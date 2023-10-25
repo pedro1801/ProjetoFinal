@@ -1,4 +1,4 @@
-import Controle.MergeSort.MergeSort as MergeSort
+import model.MergeSort.MergeSort as MergeSort
 class Intercala:
     def __init__(self,arr,l,n):
         self.arr = arr

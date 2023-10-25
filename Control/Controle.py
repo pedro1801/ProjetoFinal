@@ -1,7 +1,7 @@
-import flet as ft
-import Controle.MergeSort.Intercala as Intercala
-import Controle.QuickSort.quickSort as quicksort
-import Visao.InserirValores as Inserir
+import model.MergeSort.Intercala as Intercala
+import model.QuickSort.quickSort as quickSort
+import model.HeapSort.HeapSort as heapSort
+
 class Controle2:
     def __init__(self,Valores):
         self.Valores = Valores
@@ -12,9 +12,11 @@ class Controle2:
             print("teste")
         if  self.Valores == "MergeSort":
             size = len(lista)
-            Intercala.Intercala(lista,0,size - 1)
+            Intercala.Intercala(lista, 0, size - 1)
         if self.Valores == "QuickSort":
             size = len(lista)
-            quicksort.QuickSort(lista,0,size - 1)
+            quickSort.QuickSort(lista, 0, size - 1)
+        if self.Valores == "HeapSort":
+            heapSort.Heapsort(lista)
         if self.Valores == 1:
             print(lista)
