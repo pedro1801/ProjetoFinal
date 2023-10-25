@@ -1,9 +1,14 @@
 import flet as ft
-import Controle2 as Controle2
+from Control import Controle as Controle2
+
+
 class Visao:
     def __init__(self):
         self.teste = 0
         def main(page: ft.Page):
+            dlg = ft.AlertDialog(
+                title=ft.Text(), on_dismiss=lambda e: print("Dialog dismissed!")
+            )
             def Mostrar(e):
                 self.teste = 1
                 Controle2.Controle2(self.teste)
@@ -50,6 +55,7 @@ class Visao:
                                             options=[
                                                 ft.dropdown.Option("MergeSort"),
                                                 ft.dropdown.Option("QuickSort"),
+                                                ft.dropdown.Option("HeapSort"),
                                             ],
                                             alignment=ft.alignment.center,
                                         ),
@@ -63,11 +69,13 @@ class Visao:
                                 [
                                     ft.Container(
                                         ft.Dropdown(
+                                            hint_text="Grafos",
                                             border_radius=10,
                                             width=150,
                                             #color=ft.colors.WHITE,
                                             options=[
-                                                ft.dropdown.Option("Teste"),
+                                                ft.dropdown.Option("Largura"),
+                                                ft.dropdown.Option("Profundidade"),
                                             ],
                                             alignment=ft.alignment.center,
                                         ),
@@ -76,6 +84,16 @@ class Visao:
                                     ),
                                 ],
                                 left=350,
+                            ),
+                            ft.Row(
+                                [
+                                    ft.Container(
+                                        ft.ElevatedButton(text="Buscar",width=150,height=50),
+
+                                    ),
+                                ],
+                                bottom=2,
+                                left=520,
                             ),
 
                         ],

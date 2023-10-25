@@ -1,4 +1,4 @@
-import Controle.QuickSort.Dividir as Dividir
+import model.QuickSort.Dividir as Dividir
 
 class QuickSort:
     def __init__(self,arr,l,h):
