@@ -3,9 +3,9 @@ import model.QuickSort.quickSort as quickSort
 import model.HeapSort.HeapSort as heapSort
 
 class Controle2:
-    def __init__(self,Valores = "Automático"):
+    def __init__(self,Valores):
         self.Valores = Valores
-        global lista
+        global lista 
         if self.Valores == "Automático":
             lista=[0,1,5,7,9,10,2,3,1,15,20,19,18,34]
         if self.Valores == "Inserir":

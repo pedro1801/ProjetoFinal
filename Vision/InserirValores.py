@@ -1,37 +1,32 @@
 import flet as ft
-from flet_route import Params, Basket
-
 
 class Inserir:
-    def __init__(self):
-        print('oi')
-
-    def page2(self, page: ft.Page, params: Params, basket: Basket):
-        return ft.View(
-            "/page2/FletApp",
-
-            controls=[
-
-                # ft.Text(" THis is the page 2 view"),
-                ft.ElevatedButton('go to back home page', on_click=lambda _: page.go('/')),
-                ft.Stack(
-                    [
-                        ft.Row(
-                            [
-                                ft.Container(
-
-                                    ft.Dropdown(
-                                        hint_text="Gera",
-                                        options=[
-                                            ft.dropdown.Option("Teste2"),
-                                            ft.dropdown.Option("teste3")
-                                        ],
-                                    ),
-
-                                ),
-                            ],
-                        ),
-                    ],
-                ),
-            ]
-        )
+    def __init__(self,teste):
+        self.teste = teste
+        def secundaria(page: ft.View):
+            first_name = ft.TextField(label="First name", autofocus=True)
+            last_name = ft.TextField(label="Last name")
+            greetings = ft.Column()
+            page.window_height=600
+            page.window_width = 400
+            page.window_min_height = 600
+            page.window_max_height = 600
+            page.window_max_width = 400
+            page.window_min_width = 400
+            page.window_maximizable = False
+            page.window_full_screen = True
+            page.window_always_on_top = True
+            page.window_center()
+            def btn_click(e):
+                greetings.controls.append(ft.Text(f"Hello, {first_name.value} {last_name.value}!"))
+                first_name.value = ""
+                last_name.value = ""
+                page.update()
+                first_name.focus()
+                page.window_destroy()
+            page.add(
+                first_name,
+                last_name,
+                ft.ElevatedButton("Say hello!", on_click=btn_click),
+                greetings,
+            )
