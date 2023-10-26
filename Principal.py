@@ -1,5 +1,5 @@
-import Vision.Visao as Visao
+import Vision.main as main
 class Teste:
     def __init__(self):
-        Visao.Visao()
+        main.Main()
     __init__(self=0)
