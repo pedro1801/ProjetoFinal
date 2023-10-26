@@ -10,13 +10,14 @@ class Visao:
                 )
                 def Mostrar(e):
                     teste = 1
-                    Controle2.Controle2(teste)
+                    Controle2.Controle2(0,teste,0,0)
                 def dropdown_changed(e):
                     teste = e.control.value
                     if teste == "Inserir":
+                        teste = 0
                         print("Vai para o inserir")
                         page.go("/inserir/10")
-                    Controle2.Controle2(teste)
+                    Controle2.Controle2(0,teste,0,0)
                 page.title="ProjetoFinal"
                 return ft.View(
                     "/",
@@ -37,6 +38,7 @@ class Visao:
                                                 width=150,
                                                 #color=ft.colors.WHITE,
                                                 options=[
+                                                
                                                     ft.dropdown.Option("Automático"),
                                                     ft.dropdown.Option("Inserir"),
                                                 ],
@@ -51,6 +53,7 @@ class Visao:
                                 ),
                                 ft.Row(
                                     [
+                                        
                                         ft.Container(
                                             ft.Dropdown(
                                                 hint_text="Ordenação",

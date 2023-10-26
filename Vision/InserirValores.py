@@ -1,7 +1,19 @@
 import flet as ft
 from flet_route import Params, Basket
+import Control.Controle as Controle2
 class Inserir:
     def secundaria(page: ft.Page, params: Params, basket: Basket):
+        global Nome
+        global Codigo
+        def Salvar_Nome(e):
+            Nome = e.control.value
+            Controle2.Controle2(0,0,Nome,0)
+        def Salvar_Codigo(e):
+            Codigo = e.control.value
+            Controle2.Controle2(0,0,0,Codigo)
+        def Inserir(e):
+            Controle2.Controle2(0,"Inserir",0,0)
+            page.go('/')
         #page.window_center()
         return ft.View(
             "/inserir/:my_id",
@@ -16,9 +28,11 @@ class Inserir:
             #page.window_always_on_top = True
             #page.window_center()
             controls=[
-                #ft.TextField(label="First name", autofocus=True),
-                #ft.TextField(label="Last name"),
-                ft.ElevatedButton('go to back home page', on_click = lambda _: page.go('/')),
+                #ft.Text(),
+                ft.TextField(label="Nome",on_change=Salvar_Nome),
+                ft.TextField(label="Codigo",on_change=Salvar_Codigo),
+                ft.ElevatedButton('Inserir', on_click =Inserir),
+                #ft.ElevatedButton("teste",on_click=print_teste()),
             ]
             #def btn_click(e):
             #    greetings.controls.append(ft.Text(f"Hello, {first_name.value} {last_name.value}!"))
