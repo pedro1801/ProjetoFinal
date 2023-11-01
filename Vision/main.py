@@ -2,16 +2,23 @@ import flet as ft
 from flet_route import Routing, path
 import Vision.Visao as Visao
 import Vision.InserirValores as Inserir
-Teste = Inserir.Inserir.secundaria
+import Vision.InformarValores as Informa
+Insert = Inserir.Inserir.secundaria
+Valore = Informa.Informar.Valores
 #Page1 = teste.Page1
 Home = Visao.Visao.Home
 class Main:
     def __init__(self):
         def main(page: ft.Page):
+            page.title="ProjetoFinal"
+            page.window_height = 900
+            page.window_width = 700
+            page.window_maximizable = False
+            page.window_center()
             app_routes = [
                 path(url = "/",clear = True ,view=Home),
-                path(url = "/inserir/:my_id",clear = True, view=Teste),
-                #path(url = "/page1/:my_id",clear = True, view=Page1)
+                path(url = "/inserir/:my_id",clear = True, view=Insert),
+                path(url = "/Valores/:my_id",clear = True, view=Valore)
             ]
 
             Routing(page=page, 

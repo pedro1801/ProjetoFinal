@@ -1,24 +1,25 @@
 import flet as ft
 from flet_route import Params, Basket
 import Control.Controle as Controle2
-import Vision.InserirValores as Inserir
 
 class Visao:
     def Home(page: ft.Page, params: Params, basket: Basket):
-                dlg = ft.AlertDialog(
-                    title=ft.Text(), on_dismiss=lambda e: print("Dialog dismissed!")
-                )
-                def Mostrar(e):
-                    teste = 1
-                    Controle2.Controle2(0,teste,0,0)
-                def dropdown_changed(e):
-                    teste = e.control.value
-                    if teste == "Inserir":
-                        teste = 0
-                        print("Vai para o inserir")
-                        page.go("/inserir/10")
-                    Controle2.Controle2(0,teste,0,0)
                 page.title="ProjetoFinal"
+                page.window_height = 900
+                page.window_width = 700
+                page.window_maximizable = False
+                page.window_center()
+                def on_hover(e):
+                    e.control.bgcolor = ft.colors.CYAN_ACCENT_700 if e.data == "true" else ft.colors.BLUE_700
+                    e.control.update()
+                def Mostrar(e):
+                    page.go("/Valores/2")
+                def dropdown_changed(e):
+                    Valores = e.control.value
+                    if Valores == "Inserir":
+                        Valores = 0
+                        page.go("/inserir/1")
+                    Controle2.Controle2(0,Valores,0,0)
                 return ft.View(
                     "/",
                     controls=
@@ -38,14 +39,14 @@ class Visao:
                                                 width=150,
                                                 #color=ft.colors.WHITE,
                                                 options=[
-                                                
                                                     ft.dropdown.Option("Automático"),
                                                     ft.dropdown.Option("Inserir"),
                                                 ],
                                                 on_change=dropdown_changed,
                                                 alignment=ft.alignment.center,
                                             ),
-                                            bgcolor=ft.colors.SURFACE_VARIANT,
+                                            on_hover=on_hover,
+                                            bgcolor=ft.colors.BLUE_700,
                                             border_radius=10
                                         ),
                                     ],
@@ -64,11 +65,12 @@ class Visao:
                                                 options=[
                                                     ft.dropdown.Option("MergeSort"),
                                                     ft.dropdown.Option("QuickSort"),
-                                                    ft.dropdown.Option("HeapSort"),
+                                                    ft.dropdown.Option("HashTable"),
                                                 ],
                                                 alignment=ft.alignment.center,
                                             ),
-                                            bgcolor=ft.colors.SURFACE_VARIANT,
+                                            on_hover=on_hover,
+                                            bgcolor=ft.colors.BLUE_700,
                                             border_radius=10
                                         ),
                                     ],
@@ -88,7 +90,8 @@ class Visao:
                                                 ],
                                                 alignment=ft.alignment.center,
                                             ),
-                                            bgcolor=ft.colors.SURFACE_VARIANT,
+                                            on_hover=on_hover,
+                                            bgcolor=ft.colors.BLUE_700,
                                             border_radius=10
                                         ),
                                     ],
@@ -97,8 +100,7 @@ class Visao:
                                 ft.Row(
                                     [
                                         ft.Container(
-                                            ft.ElevatedButton(text="Buscar",width=150,height=50,on_click=Mostrar),
-
+                                            ft.ElevatedButton(text="Buscar",width=150,height=50,on_click=Mostrar,bgcolor=ft.colors.BLUE_700,color=ft.colors.BLACK,on_hover=on_hover),
                                         ),
                                     ],
                                     bottom=2,
@@ -112,5 +114,5 @@ class Visao:
                     ]
                 )
     def __init__(self):
-        self.teste = 1
+        self.Valores = 1
         self.Home

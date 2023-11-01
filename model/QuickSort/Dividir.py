@@ -1,30 +1,43 @@
 class Dividir:
-    def __init__(self,arr,l,h):
+    def __init__(self,arr,l,h,Nomes):
+        self.Nomes = Nomes
         self.arr = arr
         self.l = l
         self.h = h
-        def Dividi(arr, l, h):
-            # choose the rightmost element as pivot
-            pivot = arr[h]
-        
-            # pointer for greater element
-            i = l - 1
-        
-            # traverse through all elements
-            # compare each element with pivot
-            for j in range(l, h):
-                if arr[j] <= pivot:
-        
-                    # If element smaller than pivot is found
-                    # swap it with the greater element pointed by i
-                    i = i + 1
-        
-                    # Swapping element at i with element at j
-                    (arr[i], arr[j]) = (arr[j], arr[i])
-        
-            # Swap the pivot element with the greater element specified by i
-            (arr[i + 1], arr[h]) = (arr[h], arr[i + 1])
-        
-            # Return the position from where partition is done
-            return i + 1
-        Dividi(self.arr,self.l,self.h)
+        def Dividi(alist,first,last,Nomes):
+            #print("Dentro Dividi")
+            pivotvalue = alist[first]
+
+            leftmark = first+1
+            rightmark = last
+
+            done = False
+            while not done:
+
+                while leftmark <= rightmark and alist[leftmark] <= pivotvalue:
+                    leftmark = leftmark + 1
+
+                while alist[rightmark] >= pivotvalue and rightmark >= leftmark:
+                    rightmark = rightmark -1
+
+                if rightmark < leftmark:
+                    done = True
+                else:
+                    temp = alist[leftmark]
+                    alist[leftmark] = alist[rightmark]
+                    alist[rightmark] = temp
+                    temp2 = Nomes[leftmark]
+                    Nomes[leftmark] = Nomes[rightmark]
+                    Nomes[rightmark] = temp2
+
+
+            temp = alist[first]
+            alist[first] = alist[rightmark]
+            alist[rightmark] = temp
+            temp2 = Nomes[first]
+            Nomes[first] = Nomes[rightmark]
+            Nomes[rightmark] = temp2
+
+
+            return rightmark
+        self.Retorno = Dividi(self.arr,self.l,self.h,self.Nomes)
