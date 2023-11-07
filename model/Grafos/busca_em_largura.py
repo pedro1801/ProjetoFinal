@@ -17,7 +17,7 @@ class bfs:
 
 # Exemplo de uso
 grafo1 = {
-    0: [1, 3],    # vizinhos do vértice 0
+    0: [1, 3],    # chave: vertice - valores: uma lista de vizinhos do vértice 0
     1: [4],       # vizinhos do vértice 1
     2: [4, 5],    # vizinhos do vértice 2
     3: [1],       # vizinhos do vértice 3

@@ -2,23 +2,22 @@ import networkx as nx
 import matplotlib.pyplot as plt
 
 class dfs:
-    def __init__(self,grafo):
+    def __init__(self, grafo):
         self.grafo = grafo
         self.G = nx.Graph()
 
-    def busca_em_profundidade(self,grafo):
+    def busca_em_profundidade(self, vertice_inicial):
         def busca_recursiva(vertice):
             visitados.add(vertice)
             print(f'Visitando vértice: {vertice}')
-            for vizinho in self.grafo[vertice]:
-                print(f'Os vizinhos do vertice {vertice} são {vizinho} ')
+            vizinhos = self.grafo[vertice]
+            print(f'Os vizinhos do vértice {vertice} são: {vizinhos}')
+            for vizinho in vizinhos:
                 if vizinho not in visitados:
                     busca_recursiva(vizinho)
 
         visitados = set()
-        for vertice in range(len(self.grafo)):
-            if vertice not in visitados:
-                busca_recursiva(vertice)
+        busca_recursiva(vertice_inicial)
     
     def desenhar_grafo(self,grafo):
         for vertice, vizinhos in enumerate(self.grafo):
@@ -42,5 +41,5 @@ grafo = [
 ]
 
 x = dfs(grafo)
-x.busca_em_profundidade(grafo)
+x.busca_em_profundidade(0)
 x.desenhar_grafo(grafo)
