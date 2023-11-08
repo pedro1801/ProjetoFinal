@@ -1,7 +1,12 @@
 import model.MergeSort.Intercala as Intercala
 import model.QuickSort.quickSort as QuickSort
 import model.HashTable.HashTable as HashTable
+import model.Grafos.busca_em_profundidade as Grafos1
+import model.Grafos.busca_em_largura as Grafos2
+import model.Grafos.teste as teste
+import Vision.Grafo as Teste
 import random
+
 
 class Controle2:
     def __init__(self,ini,Valores,Valor_Nome,Valor_Codigo):
@@ -9,12 +14,14 @@ class Controle2:
         self.Valor_Nome = Valor_Nome
         self.Valor_Codigo = Valor_Codigo
         self.Valores = Valores
+        global Teste1 
         global hashTable
         global Lista_Nome 
         global Lista_Codigo
         global Nome
         global Codigo
         if self.ini == 1:
+            Teste1 = 0
             Lista_Nome = []
             Lista_Codigo = []
 
@@ -43,3 +50,9 @@ class Controle2:
             hashTable = HashTable.HashTable(10000)
             for i in range(0,len(Lista_Codigo)):
                 hashTable.put(Lista_Codigo[i],Lista_Nome[i])
+        if self.Valores == "Profundidade":
+            #teste.Teste(valor=1)
+            Grafos1.dfs.Inicialização()
+        if self.Valores == "Largura":
+            Grafos2.bfs.Inicialização()
+            

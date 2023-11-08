@@ -16,6 +16,14 @@ class Visao:
                     page.go("/Valores/2")
                 def dropdown_changed(e):
                     Valores = e.control.value
+                    if Valores == "Profundidade":
+                         Controle2.Controle2(0,Valores,0,0)
+                         page.go("/GrafoP/3")
+                         Valores = 0
+                    if Valores == "Largura":
+                         Controle2.Controle2(0,Valores,0,0)
+                         page.go("/GrafoP/3")
+                         Valores=0 
                     if Valores == "Inserir":
                         Valores = 0
                         page.go("/inserir/1")
@@ -83,6 +91,7 @@ class Visao:
                                                 hint_text="Grafos",
                                                 border_radius=10,
                                                 width=150,
+                                                on_change=dropdown_changed,
                                                 #color=ft.colors.WHITE,
                                                 options=[
                                                     ft.dropdown.Option("Largura"),

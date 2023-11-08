@@ -1,45 +1,50 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import os
 
 class dfs:
-    def __init__(self, grafo):
-        self.grafo = grafo
+    def __init__(self):
         self.G = nx.Graph()
-
-    def busca_em_profundidade(self, vertice_inicial):
-        def busca_recursiva(vertice):
-            visitados.add(vertice)
-            print(f'Visitando vértice: {vertice}')
-            vizinhos = self.grafo[vertice]
-            print(f'Os vizinhos do vértice {vertice} são: {vizinhos}')
-            for vizinho in vizinhos:
-                if vizinho not in visitados:
-                    busca_recursiva(vizinho)
-
-        visitados = set()
-        busca_recursiva(vertice_inicial)
-    
-    def desenhar_grafo(self,grafo):
-        for vertice, vizinhos in enumerate(self.grafo):
-            self.G.add_node(vertice)
+        self.visited = set()
+        self.currently_visiting = None
+        self.NumeroImg = 0
+    def busca_em_profundidade(self, grafo, vertice):
+        self.NumeroImg = self.NumeroImg + 1
+        diretorio_saida = 'Imagens'
+        if not os.path.exists(diretorio_saida):
+            os.makedirs(diretorio_saida)
+        if vertice not in self.visited:
+            self.visited.add(vertice)
+            self.currently_visiting = vertice
+            #print(f'Visitando vértice: {vertice}')
+            vizinhos = grafo[vertice]
+            #print(f'Os vizinhos do vértice {vertice} são: {vizinhos}')
             for vizinho in vizinhos:
                 self.G.add_edge(vertice, vizinho)
+                plt.clf()
+                node_colors = self.color_nodes()
+                nx.draw(self.G, with_labels=True, node_color=node_colors)
+                plt.savefig(os.path.join(diretorio_saida,f'image{self.NumeroImg}.png'))
+                self.busca_em_profundidade(grafo, vizinho)
 
-        pos = nx.spring_layout(self.G)
-        nx.draw(self.G, pos, with_labels=True, node_size=500, node_color="skyblue", font_size=10, font_color="black")
-        plt.axis('off')
-        plt.savefig("grafo.png", format="PNG")
-        plt.show()
-
-grafo = [
-    [1, 3],    # vizinhos do vertice 0
-    [4],       # vizinhos do vertice 1
-    [4, 5],    # vizinhos do vertice 2
-    [1],       # vizinhos do vertice 3
-    [3],       # vizinhos do vertice 4
-    [5]        # vizinhos do vertice 5
-]
-
-x = dfs(grafo)
-x.busca_em_profundidade(0)
-x.desenhar_grafo(grafo)
+    def color_nodes(self):
+        node_colors = []
+        for node in self.G.nodes:
+            if node == self.currently_visiting:
+                node_colors.append('black')  # Atualmente visitado (verde)
+            elif node in self.visited:
+                node_colors.append('gray')  # Visitado anteriormente (azul)
+            else:
+                node_colors.append('white')  # Não visitado
+        return node_colors
+    def Inicialização():
+        grafo = {
+            0: [1, 3],
+            1: [4],
+            2: [],
+            3: [1],
+            4: [],
+        }
+        
+        dfs_instancia = dfs()
+        dfs_instancia.busca_em_profundidade(grafo, 0)

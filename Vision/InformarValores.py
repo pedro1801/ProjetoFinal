@@ -13,12 +13,17 @@ class Informar:
             e.control.update()
         def Voltar(e):
             page.go("/")
+            page.clean()
         def Buscar(e):
+            cl.clean()
             Controle2.Controle2(0,"HashTable",0,0)
             hash = Controle2.hashTable
             Codigo = Controle2.Codigo
             print(Codigo)
             print(hash.get(Codigo))
+            cl.controls.append(ft.Text("Codigo | Nome"))
+            cl.controls.append(ft.Text(f"{Codigo} | {hash.get(Codigo)}"))
+            page.update()
         def Salvar_Codigo(e):
             Codigo = e.control.value
             Controle2.Controle2(0,0,0,Codigo)

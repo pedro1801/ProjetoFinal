@@ -1,46 +1,31 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import os
 
-class dfs:
-    def __init__(self):
-        self.G = nx.Graph()
-        self.visited = set()
-        self.currently_visiting = None
+# Criar um objeto de grafo
+class Teste:
+    def __init__(self,valor):
+        self.valor = valor
+        def secundaria():
 
-    def busca_em_profundidade(self, grafo, vertice):
-        if vertice not in self.visited:
-            self.visited.add(vertice)
-            self.currently_visiting = vertice
-            print(f'Visitando vértice: {vertice}')
-            vizinhos = grafo[vertice]
-            print(f'Os vizinhos do vértice {vertice} são: {vizinhos}')
-            for vizinho in vizinhos:
-                self.G.add_edge(vertice, vizinho)
-                plt.clf()
-                node_colors = self.color_nodes()
-                nx.draw(self.G, with_labels=True, node_color=node_colors)
-                plt.pause(1)
-                self.busca_em_profundidade(grafo, vizinho)
+            print("DEntro")
+            G = nx.Graph()
 
-    def color_nodes(self):
-        node_colors = []
-        for node in self.G.nodes:
-            if node == self.currently_visiting:
-                node_colors.append('green')  # Atualmente visitado (verde)
-            elif node in self.visited:
-                node_colors.append('blue')  # Visitado anteriormente (azul)
-            else:
-                node_colors.append('red')  # Não visitado
-        return node_colors
+            # Adicionar nós
+            G.add_node(1)
+            G.add_node(2)
+            G.add_node(3)
 
-grafo = {
-    0: [1, 3],
-    1: [4],
-    2: [],
-    3: [1],
-    4: [],
-}
+            # Adicionar arestas
+            G.add_edge(1, 2)
+            G.add_edge(2, 3)
+            G.add_edge(3, 1)
 
-dfs_instancia = dfs()
-dfs_instancia.busca_em_profundidade(grafo, 0)
-plt.show()  # Mantém a última imagem aberta
+            # Plotar o grafo
+            pos = nx.spring_layout(G)  # Layout para posicionar os nós
+            nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800, font_size=10, font_color='black', font_weight='bold')
+            plt.show()
+            diretorio_saida = "Imagens"
+            plt.savefig(os.path.join(diretorio_saida,f'image.png'))
+        if self.valor == 1:
+            secundaria()

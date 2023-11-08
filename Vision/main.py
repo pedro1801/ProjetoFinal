@@ -3,8 +3,10 @@ from flet_route import Routing, path
 import Vision.Visao as Visao
 import Vision.InserirValores as Inserir
 import Vision.InformarValores as Informa
+import Vision.Grafo as GrafosProfundidade
 Insert = Inserir.Inserir.secundaria
 Valore = Informa.Informar.Valores
+Grafo1 = GrafosProfundidade.GrafoProfundidade.secundaria
 #Page1 = teste.Page1
 Home = Visao.Visao.Home
 class Main:
@@ -18,7 +20,8 @@ class Main:
             app_routes = [
                 path(url = "/",clear = True ,view=Home),
                 path(url = "/inserir/:my_id",clear = True, view=Insert),
-                path(url = "/Valores/:my_id",clear = True, view=Valore)
+                path(url = "/Valores/:my_id",clear = True, view=Valore),
+                path(url = "/GrafoP/:my_id",clear= True, view=Grafo1)
             ]
 
             Routing(page=page, 
